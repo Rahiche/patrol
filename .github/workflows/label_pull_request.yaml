@@ -1,17 +1,18 @@
-name: assign labels to pull request
+name: label pull request
 
 on:
-  pull_request:
+  pull_request_target:
 
 jobs:
   main:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - name: Clone repository
+        uses: actions/checkout@v4
 
       - name: Label Pull Request
         uses: actions/labeler@v3
         with:
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          sync-labels: ''

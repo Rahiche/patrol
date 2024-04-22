@@ -1,0 +1,23 @@
+name: patrol_finders_example
+description: A new Flutter project.
+publish_to: none
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.0 <4.0.0'
+  flutter: '>=3.16.0'
+
+dependencies:
+  cupertino_icons: ^1.0.6
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  leancode_lint: ^7.0.0+1
+  patrol_finders:
+    path: ../
+
+flutter:
+  uses-material-design: true

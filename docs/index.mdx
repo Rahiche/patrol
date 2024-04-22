@@ -1,24 +1,61 @@
 ---
-description: Flutter-native UI testing framework overcoming limitations of flutter_test and flutter_driver
+title: Main
+description: The powerful Flutter-first UI testing framework. Ready for action!
 ---
 
-# About
+# Patrol by LeanCode
 
-Patrol is a new testing framework for Flutter. It builds on top of Flutter's
-testing tools to let you do things which were previously impossible.
+![Patrol promotial graphics][promo_graphics]
 
-Patrol lets you [access features of the platform][native] that the Flutter app
-is running on. For example, you can go to the home screen, rotate the device,
-and then go back – and you can code this very easily in Dart.
+Patrol is a powerful, open-source testing framework for Flutter apps created and
+maintained by [LeanCode] – one of the leading Flutter development consultancies
+in the world. Patrol builds on top of Flutter's existing test tooling to enable
+you to do things which were previously impossible.
 
-Patrol also provides a [new custom finder system][custom-finders] that extends
-Flutter's default finders. Patrol's custom finders make writing Flutter widget
-tests _dramatically_ faster, easier, and more fun!
+It lets you [access native features of the platform][native] that the
+Flutter app is running on. Finally, you can interact with permission dialogs,
+notifications, WebViews, change device settings, toggle Wi-Fi, and much more –
+and you can code this very easily in plain Dart.
 
-Patrol is an open-source project which is being developed and maintained by us
-– [LeanCode][leancode]! It is still in active development and hasn't reached 1.0
-yet, but we already use it to test production apps.
+Patrol also provides a [new custom finder system][finders] that extends
+Flutter's default finders, making them shorter and easier to understand.
+Patrol's custom finders, coupled with [Hot Restart], make writing integration
+tests _dramatically_ faster, easier and more fun!
+
+Patrol is also a revamped, production-quality version of Flutter's built-in
+`integration_test` plugin. It fixes its shortcomings and enables features such
+as full isolation between tests and sharding.
+
+Patrol is a fully open-source project and we're proud to share it with the
+awesome Flutter community.
+
+At LeanCode, we use Patrol to test our clients' production-grade apps, and you
+can do the same!
+
+<Info>[Get Patrol from pub.dev now!][patrol_on_pubdev]</Info>
+
+### Learn more about Patrol
+
+See the talk we gave at Fluttercon 2023:
+
+<YouTube id="WJKcZ5ob718" />
+
+or [read the article][article_2x] explaining how Patrol fixes deficiencies of
+Flutter's official integration_test plugin.
+
+We also provide professional services related to Flutter app testing – check
+them out:
+
+[![Automated UI testing services][services_graphics]][services]
 
 [leancode]: https://leancode.co
 [native]: /native/overview
-[custom-finders]: /custom-finders/overview
+[finders]: /finders/overview
+[hot restart]: /cli-commands/develop
+[article_0x]: https://leancode.co/blog/patrol-flutter-first-ui-testing-framework
+[article_1x]: https://leancode.co/blog/patrol-1-0-powerful-flutter-ui-testing-framework
+[article_2x]: https://leancode.co/blog/patrol-2-0-improved-flutter-ui-testing
+[promo_graphics]: /assets/promo.png
+[patrol_on_pubdev]: https://pub.dev/packages/patrol
+[services_graphics]: /assets/services.png
+[services]: https://leancode.co/products/automated-ui-testing-in-flutter?utm_source=patrol_page&utm_medium=banner&utm_campaign=service

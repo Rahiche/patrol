@@ -1,3 +1,414 @@
+## 3.6.1
+
+- Fix clearing textfield before entering text on iOS (#2158).
+
+## 3.6.0
+
+- Add clearing textfield before entering text on iOS (#2145).
+- Added the NativeAutomator2, which allows to interact with native using selectors designated for a specific platform (AndroidSelector and IOSSelector) (#2132).
+- Add support for --app-server-port and --test-server-port on Android (#2154).
+
+## 3.5.2
+
+- Fix reporting fail cause to native on ios in release mode (#2114).
+
+## 3.5.1
+
+- Make more `Selector` properties work on iOS (#2030).
+- Fix handling denying Android permissions when invoked second time (#2112).
+
+## 3.5.0
+
+- Add optional timeout parameter to native methods (#2042).
+- Add `$.native.tapAt()` (#2053)
+- Fix `native.enterText` interacting with first EditText regardless of `Selector` passed (Android-only) (#2072)
+- Print link to devtools regardless of open-devtools flag (#2076).
+
+## 3.4.0
+
+- Allow for changing the port when running on iOS (#2027).
+
+  To do so, pass `test-server-port` (default 8081) and `app-server-port`
+  (default 8082) to Patrol CLI commands (e.g `patrol test`)
+
+- Fix `patrolSetUp()` and `patrolTearDown()` not working in `patrol develop` (#2023).
+
+This version requires version 2.6.0 of `patrol_cli` package.
+
+## 3.3.0
+
+- Enable selecting individual tests with `xcodebuild`'s `-only-testing` option.
+  Currently iOS only, does not support macOS (#2001)
+- Fix being unable to interact with the running app during testing with a finger
+  (#2008)
+- Fix non-ASCII characters displaying as gibberish in Patrol's DevTools
+  extension (#2010)
+- Fix Dart-side crash in test causing test suite to hang on iOS (#2013)
+
+## 3.2.0
+
+- Add support for running patrol tests on macOS (alpha) (#1847)
+
+## 3.1.0
+
+- Implement `patrolSetUp()` and `patrolTearDown()`, which are equivalents of
+  vanilla `setUp()` and `tearDown()` but work with Patrol's native automation
+  and test bundling feature (#1967) (#1721)
+
+## 3.0.3
+
+- Implement `$.native.swipe()` on iOS (#1927)
+
+## 3.0.2+1
+
+- Add screenshots to `pubspec.yaml` (#1917)
+
+## 3.0.2
+
+- Bump dependencies for Flutter 3.16 and Dart 3.2
+- Populate `topics` in pubspec
+
+## 3.0.1
+
+- Fix extension code not being bundled by GitHub Actions workflow (#1902)
+
+## 3.0.0
+
+Give a warm welcome to the new **Patrol DevTools Extension**!
+
+Patrol DevTools extension allows you to explore the native view hierarchy when
+developing tests with `patrol develop`. Now you can easily see what Android /
+iOS views are currently visible and discover their properties so that they can
+be used in native selectors like `$.native.tap()`. You don’t have to use any
+external tools for that. This is just the beginning, and we plan to add more
+features to our extension in the future.
+
+Other changes:
+
+- Bump minimum supported Flutter version to 3.16
+- **BREAKING:**
+
+  - Remove `bindingType` parameter from `patrolTest()` function. Now only
+    `PatrolBinding` is used and it's automatically initialized (#1882)
+  - Remove `nativeAutomation` parameter from `patrolTest()` function. Now it's
+    enabled by default (#1882)
+  - This release also depends on [patrol_finders
+    v2](https://pub.dev/packages/patrol_finders/changelog#200) and includes
+    its breaking changes.
+
+- Remove dependency on `integration_test` plugin (#1882)
+
+This version requires version 2.3.0 of `patrol_cli` package.
+
+## 2.3.2
+
+- Add `PatrolFinder.longPress()` (#1825)
+
+## 2.3.1
+
+- Add support for iOS 11 and 12 (#1733)
+- Fix build-time and run-time crashes when app doesn't use Kotlin 1.8.x (#1782)
+
+## 2.3.0
+
+- Add support for nested test hierarchies using `group()`s (#1634)
+- Replace Protocol Buffers and gRPC with a custom code generation solution that
+  is more lightweight (#1681)
+- Fix test name label blocking hit testing (#1731)
+
+This version requires version 2.2.0 of `patrol_cli` package.
+
+## 2.2.5
+
+- Fix `grantPermissionOnlyThisTime()` crashing on Android <11 (#1698)
+
+## 2.2.4
+
+- Remove deprecation of `nativeAutomation` and add message about migration to
+  `patrol_finders` (#1670)
+
+## 2.2.3
+
+- Make `KeyboardBehavior.alternative` not automatically try to hide the keyboard
+  on iOS (#1638)
+
+## 2.2.2
+
+- Fix deprecation message for `andSettle` (settleBehavior -> settlePolicy)
+  (#1622)
+
+## 2.2.1
+
+- Fix `appId` parameter missing from `NativeAutomator.waitUntilVisible()`
+  (#1611)
+- Fix tests crashing by stopping depending on `dart:io` when running with
+  `flutter_driver` on the Web (#1578)
+
+## 2.2.0
+
+- Use proper context in `PatrolJUnitRunner` (#1591)
+- Make `Selector.instance` work on iOS (#1569)
+- Ignore calls to `select[Fine|Coarse]Location()` on iOS < 14 (#1564)
+- Add support for `getNativeViews` on iOS (#1553)
+
+## 2.1.0
+
+- Add `$.native.waitUntilVisible()` (#1543)
+- Add `KeyboardBehavior` enum to native enterText() methods (#1511)
+
+## 2.0.7
+
+- Add an alternative `BrowserstackPatrolJUnitRunner`, which implements a fix to
+  make tests run on BrowserStack (#1402)
+
+## 2.0.6
+
+- Implement `$.native.openQuickSettings()` for iPhones without notch (#1510)
+
+## 2.0.5
+
+- Fix occasional cryptic failures of Gradle builds (#1509)
+
+## 2.0.4
+
+- Fix tests occasionally failing on iOS because of dangling `SemanticsHandle`s
+  (#1491)
+
+## 2.0.3
+
+- Remove dependency on `package:http` (#1485)
+
+## 2.0.2
+
+- Fix `enterText()` not working when running with `flutter_driver` on the web
+  (#1459)
+
+## 2.0.1
+
+- Fix WebViews on modern Android versions (#1398). See #244 for more details.
+- Implement a proper fix for tests failing when using native automation on
+  Android + Flutter 3.10 (#1398). This replaces a workaround implemented in
+  #1352
+- Bump dependencies (#1446)
+
+This version requires version 2.0.1 of `patrol_cli` package.
+
+## 2.0.0
+
+Patrol 2.0 is released!
+
+- Read the changelog and migration guide [here](https://patrol.leancode.co/v2)
+- Read the article about how Patrol 2.0 fixes the `integration_test` plugin
+  [here](https://leancode.co/blog/patrol-2-0-improved-flutter-ui-testing)
+
+This version requires version 2.0.0 of `patrol_cli` package.
+
+## 1.1.5
+
+- Fix tests failing when using native automation on Android + Flutter 3.10
+  (#1352)
+
+## 1.1.4
+
+- Fix build with Android Gradle Plugin v8 (#1276)
+
+## 1.1.3
+
+- Fix `which()` not taking previous finder(s) into account (#1271)
+
+## 1.1.2
+
+- Fix crashing when using Gradle 8 (#1262)
+
+## 1.1.1
+
+- Add support for Flutter 3.10 (#1254)
+
+## 1.1.0
+
+This version marks the official release of Hot Restart. [Learn more
+here](https://leancode.co/blog/hot-restart-in-patrol-framework).
+
+## 1.0.9
+
+**This version requires version 1.1.4 of the `patrol_cli` package**
+
+- Rewrite native test reporting (#1178)
+
+## 1.0.8
+
+- Fix App Store warnings about non-public selectors from `patrol.framework`
+  (#1096)
+
+## 1.0.7
+
+- Fix `tap()` sometimes not being able to tap on a widget that was previously
+  found and scrolled to by `scrollTo()` (#1072)
+
+## 1.0.6
+
+- Add preliminary support for `patrol develop`. Requires version 1.0.6 of
+  `patrol_cli`.
+
+## 1.0.5+1
+
+- Update small typo in pub.dev listing (#1034)
+
+## 1.0.5
+
+- Fix build of example app for Android when building on Windows (#998)
+
+## 1.0.4
+
+- Remove unnecessary dependency on `vm_service` (#986)
+
+## 1.0.3
+
+- Fix `PATROL_WAIT` (passed through `--wait` argument to `patrol test`)
+  preventing frames from being pumped (#959)
+- Fix tapping on notification crashing on iPads (#963)
+- Remove no longer functional methods from `PatrolBinding` (#970)
+
+## 1.0.2
+
+- Make `NativeAutomator.enterTextByIndex()` have a default timeout, just like
+  `NativeAutomator.enterText()` (#943)
+
+  Documentation of these 2 methods has also been updated to explain the behavior
+  in more detail.
+
+- Use automated publishing with GitHub Actions on pub.dev (#953) (#955) (#956)
+  (#957)
+
+## 1.0.1
+
+- Fix IndexOutOfBounds exception when waiting for native views on Android (#939)
+- Fix `flutter run` not working in example app because of an error in Gradle
+  build file (#940)
+
+## 1.0.0
+
+- [Patrol 1.0 is
+  released!](https://leancode.co/blog/patrol-1-0-powerful-flutter-ui-testing-framework)
+
+## 0.10.12
+
+- Minor documentation fixes (#912)
+
+## 0.10.11
+
+- Remove unnecessary dependency on `json_serializable` and `json_annotation`
+  (#904)
+
+## 0.10.10
+
+- Fix crash `Instrumentation run failed due to Process crashed` on Android
+  (#902)
+
+## 0.10.9
+
+- Improve error message when trying to use `NativeAutomator`, but it's not
+  initialized (#856)
+
+## 0.10.8
+
+- Add GitHub Actions showing to run Patrol tests natively on both Android and
+  iOS (#747, #752)
+- Add `PatrolTestRunner` class, which should be used instead of
+  `FlutterTestRunner` in `MainActivityTest.java` file (#754)
+
+## 0.10.7
+
+- Strip out code that App Store is angry about by default in release iOS builds
+  (#727)
+
+## 0.10.6
+
+- Make it possible to change `LiveTestWidgetsFlutterBindingFramePolicy` in
+  `patrolTest()` (#716)
+
+## 0.10.5
+
+- Add support for test label overlay in PatrolBinding (#701)
+
+## 0.10.4
+
+- Migrate to lite Protocol Buffers and gRPC to avoid conflicts with Firebase on
+  Android (#688)
+
+## 0.10.3
+
+- Fix Android dependencies leaking into dependent apps (#683)
+
+## 0.10.2
+
+- Fix breaking iOS builds by migrating off `CGVectorMake()`, which is
+  unavailable in Swift (#676)
+
+## 0.10.1
+
+- Fix breaking iOS builds by setting minimum iOS version to 13.0 (#674)
+
+## 0.10.0
+
+- Allow for running as native Android/iOS instrumented test (Patrol Next) (#646,
+  #671)
+
+## 0.9.1
+
+- Add `NativeAutomator.swipe()` to enable simple swiping (#669)
+
+## 0.9.0
+
+- **Breaking:** Remove `PatrolTester.log()` - it did not fit in there and was
+  rarely used (#665)
+- **Breaking:** Remove `PatrolTesterConfig.appName` - it's only usage was in
+  `PatrolTester.log()`, and since it was removed, this field is removed as well
+  (#665)
+
+## 0.8.0
+
+- **Breaking:** Change signature of `PatrolTester.pumpAndSettle()` method to use
+  named arguments (#657)
+- Fix `PatrolTester.dragUntilVisible()` not calling `first` on its `Finder view`
+  parameter (#656)
+
+## 0.7.6
+
+- Make it possible to configure loggers of `NativeAutomator` and `HostAutomator`
+  (#644)
+- Throw `PatrolFinderException` when `PatrolFinder.text` fails (#644)
+
+## 0.7.5
+
+- Revamp configuration of testers, letting for more granural setup (#640):
+  - Rename `PatrolTestConfig` to `PatrolTesterConfig`
+  - Introduce `NativeAutomatorConfig`
+  - Introduce `HostAutomatorConfig`
+- Introduce `HostAutomator.run()` method, which lets you run programs on your
+  computer from within your Flutter integration tests (#630)
+
+## 0.7.4
+
+- Fix minor bug with custom binding initialization (#636)
+
+## 0.7.3
+
+- Add `patrolIntegrationDriver`, which extends the default `integrationDriver`
+  with cool features like taking screenshots. More features enabled by
+  `patrolIntegrationDriver` are coming soon! (#593)
+- Warn when package name and bundle identifier is not set in `PatrolTestConfig`
+  (#591)
+
+## 0.7.2
+
+- Add `PatrolFinder.which()` (#571)
+
+## 0.7.1
+
+- Add `andSettle` param to `PatrolFinder.scrollTo()` (#501)
+- Add more integration tests to the example app (#491)
+
 ## 0.7.0
 
 In this release, we've focused on stability, reliability, and reducing
@@ -204,7 +615,8 @@ Native:
 - Improve selector engine:
 
   - Make it possible to pass a `Key` as `matching` to
-    `MaestroTester.call(dynamic matching)` and `MaestroFinder.$(dynamic matching)`
+    `MaestroTester.call(dynamic matching)` and `MaestroFinder.$(dynamic
+matching)`
 
 - Add `sleep` parameter for `maestroTest` method
 - Make `WidgetTester`'s forwarded methods in `MaestroTester` accept less
@@ -216,7 +628,8 @@ Native:
 - Improve selector engine:
 
   - Make it possible to pass a `MaestroFinder` as `matching` to
-    `MaestroTester.call(dynamic matching)` and `MaestroFinder.$(dynamic matching)`
+    `MaestroTester.call(dynamic matching)` and `MaestroFinder.$(dynamic
+matching)`
   - Fix a bug which caused chaining `MaestroFinder`s (e.g
     `$(Scaffold).$(Container).$(#someText)`) to not work.
 

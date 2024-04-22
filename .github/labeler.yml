@@ -1,12 +1,11 @@
-"automator: android":
-  - AutomatorServer/android/**/*
-"automator: ios":
-  - AutomatorServer/ios/**/*
-"package: adb":
+'package: adb':
   - packages/adb/**/*
-"package: patrol_cli":
+'package: patrol_cli':
   - packages/patrol_cli/**/*
-"package: patrol":
+'cirrusci':
+  - .cirrus.yml
+'package: patrol':
   - packages/patrol/**/*
-"docs":
+'docs':
   - docs/**/*
+  - docs.json

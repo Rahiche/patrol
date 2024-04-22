@@ -2,40 +2,77 @@
   "name": "Patrol",
   "twitter": "leancodepl",
   "theme": "#FFA03F",
-  "favicon": "/assets/favicon.png",
+  "favicon": "/assets/favicon-dark.png",
+  "logo": "/assets/favicon-light.png",
+  "logoDark": "/assets/favicon-dark.png",
+  "socialPreview": "https://raw.githubusercontent.com/leancodepl/patrol/master/docs/assets/preview.jpg",
+  "googleAnalytics": "G-2REFSQEXJZ",
+  "docsearch": {
+    "appId": "HFSGK31MT8",
+    "apiKey": "4d41430f0f5928c58db0acfdace04a8b",
+    "indexName": "patrol-leancode"
+  },
+  "anchors": [
+    {
+      "title": "Join our Discord",
+      "icon": "discord",
+      "link": "https://discord.gg/ukBK5t4EZg"
+    }
+  ],
   "sidebar": [
     ["About", "/"],
     ["Getting started", "/getting-started"],
-    ["Comparison with other testing frameworks", "/comparison"],
+    ["Patrol 3.0 is here!", "/v3"],
+    ["New package - patrol_finders", "/patrol-finders-release"],
+    ["Supported platforms", "/supported-platforms"],
     [
-      "Custom finders",
+      "Finders",
       [
-        ["Overview", "/custom-finders/overview"],
-        ["Getting started", "/custom-finders/getting-started"],
-        ["Advanced", "/custom-finders/advanced"]
+        ["Overview", "/finders/overview"],
+        ["Usage", "/finders/usage"],
+        ["Advanced", "/finders/advanced"],
+        ["Using Patrol finders in widget tests", "/finders/finders-setup"]
       ]
     ],
     [
-      "Native",
+      "Native automation",
       [
         ["Overview", "/native/overview"],
-        ["Setup", "/native/setup"],
-        ["Getting started", "/native/getting-started"],
+        ["Usage", "/native/usage"],
+        ["Advanced", "/native/advanced"],
         ["Feature parity", "/native/feature-parity"]
       ]
     ],
     [
       "CLI commands",
       [
-        ["bootstrap", "/cli-commands/bootstrap"],
-        ["clean", "/cli-commands/clean"],
+        ["build", "/cli-commands/build"],
+        ["develop", "/cli-commands/develop"],
         ["devices", "/cli-commands/devices"],
         ["doctor", "/cli-commands/doctor"],
-        ["drive", "/cli-commands/drive"],
+        ["test", "/cli-commands/test"],
         ["update", "/cli-commands/update"]
       ]
     ],
+    [
+      "Patrol and CI",
+      [
+        ["Overview", "/ci/overview"],
+        ["Platforms", "/ci/platforms"],
+        ["Firebase Test Lab", "/ci/firebase-test-lab"]
+      ]
+    ],
+    [
+      "Integrations",
+      [
+        ["Allure", "/integrations/allure"],
+        ["Browserstack", "/integrations/browserstack"]
+      ]
+    ],
     ["Effective Patrol", "/effective-patrol"],
-    ["Tips and tricks", "/tips-and-tricks"]
+    ["Tips and tricks", "/tips-and-tricks"],
+    ["Debugging Patrol tests", "/debugging-patrol-tests"],
+    ["Compatibility table", "/compatibility-table"],
+    ["LeanCode", "https://leancode.co"]
   ]
 }

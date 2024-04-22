@@ -1,3 +1,41 @@
+## Unreleased
+
+- Bump minimum Dart SDK to version 3.2.0 (#1917)
+
+## 0.3.0
+
+- Clean up (#1903)
+  - Bump minimum Dart SDK version to 3.1.0
+  - Remove `mocktail` from `dependecnies`
+  - Update `issue_tracker` and `repository` fields in pubspec
+
+## 0.2.5
+
+- Throw an exception if `adb` executable is not present in $PATH (#1118)
+
+## 0.2.4+2
+
+- Fix publish workflow (#955) (#956)
+
+## 0.2.4+1
+
+- Use automated publishing with GitHub Actions on pub.dev (#953)
+
+## 0.2.4
+
+- Wait for the `activity` service before installing, uninstalling, and
+  instrumenting (#616)
+
+## 0.2.3
+
+- Fix infinite waiting for `package` service when more than a single device
+  device is attached (#553)
+
+## 0.2.2
+
+- Wait for the `package` service before installing, uninstalling, and
+  instrumenting (#539)
+
 ## 0.2.1+2
 
 - Fix broken changelog display (#294)

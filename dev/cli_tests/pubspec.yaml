@@ -1,0 +1,11 @@
+name: cli_tests
+description: Scripts to test patrol_cli.
+
+environment:
+  sdk: '>=3.2.0 <4.0.0'
+
+dependencies:
+  path: ^1.8.3
+
+dev_dependencies:
+  leancode_lint: ^7.0.0+1

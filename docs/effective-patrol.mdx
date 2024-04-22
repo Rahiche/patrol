@@ -1,12 +1,14 @@
-## Effective Patrol
+---
+title: Effective Patrol
+---
+
+# Effective Patrol
 
 Over the past months, we've written many Patrol tests and often learned the hard
 way what works well and what doesn't. We're sharing our findings hoping that
 they'll help you write robust tests.
 
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
-"SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be
-interpreted as described in [RFC 2119][rfc2119].
+<Info>This document follows [RFC 2119][rfc2119].</Info>
 
 ### PREFER using keys to find widgets
 
@@ -41,7 +43,7 @@ it. In most cases, that login button should have a key.
 Let's consider this simple example:
 
 ```dart
-await $(LoginForm).$(Button).at(1).tap(); // taps on the second button, which logs in
+await $(LoginForm).$(Button).at(1).tap(); // taps on the second ("login") button
 ```
 
 This works, but the code is not very self-explanatory. To make it understandable
@@ -84,7 +86,7 @@ The number of keys will get bigger as your app grows and you write more tests.
 To keep track of them, it's a good idea to keep all keys in, say,
 `lib/keys.dart` file.
 
-```dart
+```dart title="lib/keys.dart"
 import 'package:flutter/foundation.dart';
 
 typedef K = Keys;
@@ -102,17 +104,30 @@ class Keys {
 
 Then you can use it in your app's and tests' code:
 
-```dart
-// somehwere in app
-TextField(
-  key: Keys.usernameTextField,
-  // more properties
-)
+```dart title="In app UI code"
+@override
+Widget build(BuildContext context) {
+  return Column(
+    children: [
+      /// some widgets
+      TextField(
+        key: K.usernameTextField,
+        // some other TextField properties
+      ),
+      // more widgets
+    ],
+  );
+}
 ```
 
-```dart
-// in test
-await $(K.usernameTextField).enterText('CoolGuy');
+```dart title="In app test code"
+void main() {
+  patrolTest('logs in', (PatrolIntegrationTester $) {
+    // some code
+    await $(K.usernameTextField).enterText('CoolGuy');
+    // more code
+  });
+}
 ```
 
 This is a good way to make sure that the same keys are used in app and tests. No
@@ -145,14 +160,13 @@ import 'package:patrol/patrol.dart';
 void main() {
   patrolTest(
     'signs up for the newsletter and receives a reward',
-    nativeAutomation: true,
     ($) async {
       await $.pumpWidgetAndSettle(AwesomeApp());
 
-      await $(#phoneNumber).enterText("800-555-0199");
+      await $(#phoneNumber).enterText('800-555-0199');
       await $(#loginButton).tap();
 
-      // lots of lines
+      // more code
     },
   );
 }
@@ -163,14 +177,13 @@ void main() {
 void main() {
   patrolTest(
     'test',
-    nativeAutomation: true,
     ($) async {
       await $.pumpWidgetAndSettle(AwesomeApp());
 
-    await $(#phoneNumber).enterText(555-2137)
-    await $(#loginButton).tap();
+      await $(#phoneNumber).enterText('800-555-0199');
+      await $(#loginButton).tap();
 
-      // lots of lines
+      // more code
     },
   );
 }

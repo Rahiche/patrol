@@ -1,16 +1,26 @@
-# example
+# patrol_challenge
 
-A new Flutter project.
+App with the quiz for Fluttercon
 
-## Getting Started
+### Set up
 
-This project is a starting point for a Flutter application.
+This project is a simple quiz Flutter app. It uses flavors.
 
-A few resources to get you started if this is your first Flutter project:
+To run tests:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+```
+dart run patrol test
+```
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Google credentials
+
+This app allows the user to sign in with Google. This requires some
+configuration, but it's not needed if you don't plan on using this feature.
+
+**Android**
+
+Place `google-services.json` in `android/app`.
+
+**iOS**
+
+Place `GoogleService-Info.plist` in `ios/Runner`.

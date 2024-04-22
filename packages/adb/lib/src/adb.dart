@@ -18,7 +18,9 @@ class Adb {
   /// Initializes this [Adb] instance.
   ///
   /// If the ADB daemon is not running, it will be started.
-  Future<void> init() async => _ensureRunning();
+  Future<void> init() async {
+    await _adbInternals.ensureServerRunning();
+  }
 
   final AdbInternals _adbInternals;
 
@@ -27,12 +29,17 @@ class Adb {
   /// If there is more than 1 device attached, decide which one to use by
   /// passing [device].
   ///
+  /// Waits for the package service to start up before proceeding with
+  /// installation.
+  ///
   /// Throws if there are no devices attached.
   Future<io.ProcessResult> install(
     String path, {
     String? device,
   }) async {
-    await _ensureRunning();
+    await _adbInternals.ensureServerRunning();
+    await _adbInternals.ensurePackageServiceRunning(device: device);
+    await _adbInternals.ensureActivityServiceRunning(device: device);
 
     final result = await io.Process.run(
       'adb',
@@ -67,7 +74,9 @@ class Adb {
     String packageName, {
     String? device,
   }) async {
-    await _ensureRunning();
+    await _adbInternals.ensureServerRunning();
+    await _adbInternals.ensurePackageServiceRunning(device: device);
+    await _adbInternals.ensureActivityServiceRunning(device: device);
 
     final result = await io.Process.run(
       'adb',
@@ -107,7 +116,7 @@ class Adb {
     String? device,
     String protocol = 'tcp',
   }) async {
-    await _ensureRunning();
+    await _adbInternals.ensureServerRunning();
 
     final result = await io.Process.run(
       'adb',
@@ -168,15 +177,14 @@ class Adb {
     String? device,
     Map<String, String> arguments = const {},
   }) async {
-    await _ensureRunning();
+    await _adbInternals.ensureServerRunning();
+    await _adbInternals.ensurePackageServiceRunning(device: device);
+    await _adbInternals.ensureActivityServiceRunning(device: device);
 
     final process = await io.Process.start(
       'adb',
       [
-        if (device != null) ...[
-          '-s',
-          device,
-        ],
+        if (device != null) ...['-s', device],
         'shell',
         'am',
         'instrument',
@@ -199,7 +207,7 @@ class Adb {
   /// See also:
   ///  * https://developer.android.com/studio/command-line/adb#devicestatus
   Future<List<String>> devices() async {
-    await _ensureRunning();
+    await _adbInternals.ensureServerRunning();
 
     final stdOut = await _adbInternals.devices();
 
@@ -219,21 +227,6 @@ class Adb {
     }
 
     return devices;
-  }
-
-  Future<void> _ensureRunning() async {
-    while (true) {
-      final result = await io.Process.run(
-        'adb',
-        ['start-server'],
-        runInShell: true,
-      );
-      if (result.stdErr.contains(AdbDaemonNotRunning.trigger)) {
-        await Future<void>.delayed(const Duration(milliseconds: 100));
-      } else {
-        break;
-      }
-    }
   }
 
   void _handleAdbExceptions(String stdErr) {

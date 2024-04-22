@@ -1,0 +1,71 @@
+---
+title: Commands - test
+---
+
+# test
+
+### Synopsis
+
+Run integration tests.
+
+```
+patrol test
+```
+
+To see all available options and flags, run `patrol test --help`.
+
+### Description
+
+This command is the one use you'll be using most often.
+
+`patrol test` does the following things:
+
+1. Builds the app under test (AUT) and the instrumentation app
+2. Installs the AUT and the instrumentation on the selected device
+3. Runs the tests natively, and reports results back in native format.
+
+Under the hood, it calls Gradle (when testing on Android) and `xcodebuild` (when
+testing on iOS).
+
+### Discussion
+
+By default, `patrol test` runs all integration tests (files ending with
+`_test.dart` located in the `integration_test` directory).
+
+To run a single test, use `--target`:
+
+```
+patrol test --target integration_test/login_test.dart
+```
+
+You can use `--target` more than once to run multiple tests:
+
+```
+patrol test \
+  --target integration_test/login_test.dart \
+  --target integration_test/app_test.dart
+```
+
+Or alternatively:
+
+```
+patrol test --targets integration_test/login_test.dart,integration_test/app_test.dart
+```
+
+Test files must end with `_test.dart`. Otherwise the file is not considered a
+test and is not run.
+
+<Info>There's no difference between `--target` and `--targets`.</Info>
+
+To delay app uninstallation for 5 seconds after the test finishes:
+
+```
+patrol test --target integration_test/app_test.dart --wait 5
+```
+
+### Under the hood
+
+`patrol test` basically calls `patrol build` and then runs the built app
+binaries. For more info, read [docs of `patrol build`][patrol_build].
+
+[patrol_build]: /cli-commands/build

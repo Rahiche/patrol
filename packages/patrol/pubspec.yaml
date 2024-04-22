@@ -27,7 +27,7 @@ dependencies:
   meta: ^1.10.0
   patrol_finders: ^2.0.1
   shelf: ^1.4.1
-  test_api: '^0.6.1'
+  test_api: '0.7.1'
 
 dev_dependencies:
   build_runner: ^2.4.6
